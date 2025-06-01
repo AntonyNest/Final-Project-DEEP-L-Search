@@ -51,38 +51,36 @@ git clone https://github.com/AntonyNest/Final-Project-DEEP-L-Search.git
 cd DOCUMENTS_PATH-search-service
 
 2. Environment setup
-   # Копіюємо приклад конфігурації
+### Копіюємо приклад конфігурації
 cp .env.example .env
 
-# Редагуємо конфігурацію під ваші потреби
+### Редагуємо конфігурацію під ваші потреби
 nano .env
 
 DOCUMENTS_PATH="C:\\Users\\YourName\\Documents\\MyDocs"
 
 3. Run through Docker Compose
-# Запуск всіх сервісів
+### Запуск всіх сервісів
 docker-compose up -d
 
-# Перевірка статусу
+### Перевірка статусу
 docker-compose ps
 
-# Перегляд логів
+### Перегляд логів
 docker-compose logs -f document-search-api
 
 4. Local launch
-# Створення віртуального середовища
+### Створення віртуального середовища
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# або
-venv\Scripts\activate     # Windows
+source venv/bin/activate  # Linux/Mac or venv\Scripts\activate     # Windows
 
-# Встановлення залежностей
+### Встановлення залежностей
 pip install -r requirements.txt
 
-# Запуск Qdrant (окремо)
+### Запуск Qdrant (окремо)
 docker run -p 6333:6333 qdrant/qdrant
 
-# Запуск додатку
+### Запуск додатку
 python -m uvicorn app.main:app --reload
 
 5. Checking the work
@@ -92,8 +90,8 @@ API Documentation: http://localhost:8000/docs
 Health Check: http://localhost:8000/health
 Qdrant Dashboard: http://localhost:6333/dashboard
 
-## Використання API
-### Indexing документів
+### Використання API
+#### Indexing документів
 Спочатку потрібно проіндексувати ваші документи:
 
 curl -X POST "http://localhost:8000/api/v1/documents/index" \
@@ -103,7 +101,7 @@ curl -X POST "http://localhost:8000/api/v1/documents/index" \
     "force_reindex": false
   }'
 
-### Семантичний пошук
+#### Семантичний пошук
 
 curl -X POST "http://localhost:8000/api/v1/search/semantic" \
   -H "Content-Type: application/json" \
@@ -114,11 +112,11 @@ curl -X POST "http://localhost:8000/api/v1/search/semantic" \
     "include_stats": true
   }'
 
-### Швидкий пошук (GET)
+#### Швидкий пошук (GET)
 
 curl "http://localhost:8000/api/v1/search/quick?q=архітектура%20системи&limit=5"
 
-### Статистика системи
+#### Статистика системи
 
 curl "http://localhost:8000/api/v1/search/stats"
 
@@ -134,35 +132,35 @@ SIMILARITY_THRESHOLD - Поріг схожості (0.5)
 ### ML модель налаштування
 Для кращої роботи з українською мовою:
 
-# Балансована модель (рекомендовано)
+#### Балансована модель (рекомендовано)
 EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 
-# Вища точність (повільніше)
+#### Вища точність (повільніше)
 EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-mpnet-base-v2
 
-# Швидша робота (менша точність)
+#### Швидша робота (менша точність)
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 
-# Тестування
+## Тестування
 Запуск тестів
 
-## Всі тести
+### Всі тести
 pytest
 
-## З покриттям коду
+### З покриттям коду
 pytest --cov=app tests/
 
-## Тільки швидкі тести
+### Тільки швидкі тести
 pytest -m "not slow"
 
-## Тестування конкретного компонента
+### Тестування конкретного компонента
 pytest tests/test_search_api.py -v
 
-## Тестування API
-### Тестування індексації
+### Тестування API
+#### Тестування індексації
 python scripts/test_search.py
 
-### Bulk тестування
+#### Bulk тестування
 python scripts/test_bulk_operations.py
 
 # Моніторинг та логування
@@ -173,13 +171,13 @@ tail -f logs/document_search.log | jq .
 ### Пошук помилок
 grep "ERROR" logs/document_search.log | jq .
 
-# Метрики
+### Метрики
 Система надає детальні метрики через API:
 
-## Статистика системи
+#### Статистика системи
 curl http://localhost:8000/api/v1/documents/stats/detailed
 
-## Health check
+#### Health check
 curl http://localhost:8000/health
 
 
@@ -228,11 +226,11 @@ bash# Клонування та встановлення
 git clone https://github.com/your-org/document-search-service.git
 cd document-search-service
 
-## Dev залежності
+### Dev залежності
 pip install -r requirements.txt
 pip install pytest black flake8 mypy
 
-## Pre-commit hooks
+### Pre-commit hooks
 pre-commit install
 
 
@@ -263,10 +261,10 @@ Pytest для тестування
 
 # Kubernetes
 Docker Production
-# Build production образу
+## Build production образу
 docker build --target production -t document-search:latest .
 
-# Запуск з production конфігурацією
+## Запуск з production конфігурацією
 docker run -d \
   --name document-search \
   -p 8000:8000 \
@@ -275,7 +273,7 @@ docker run -d \
   --env-file .env.production \
   document-search:latest
 
-# k8s/deployment.yaml
+## k8s/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
