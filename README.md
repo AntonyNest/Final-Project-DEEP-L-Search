@@ -20,6 +20,7 @@ Embedding Service - generation of vector representations of text
 Vector Database (Qdrant) - storage of embeddings and metadata
 Search API - REST API for searching and interacting with the system
 
+```mermaid
 graph TD
     A[Documents] --> B[Document Processor]
     B --> C[Text Extraction]
