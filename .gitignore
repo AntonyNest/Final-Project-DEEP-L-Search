@@ -1,0 +1,454 @@
+# =================================================================
+# Document Search Service - Git Ignore Configuration
+# =================================================================
+# Цей файл визначає які файли та директорії Git має ігнорувати.
+# Критично важливо для безпеки та чистоти репозиторію.
+
+# =================================================================
+# ENVIRONMENT AND SECRETS - Конфіденційні дані
+# =================================================================
+
+# Environment files (містять секрети та локальні налаштування)
+.env
+.env.local
+.env.production
+.env.staging
+.env.*.local
+
+# Backup environment files
+*.env.backup
+*.env.bak
+
+# Configuration files з секретами
+config/secrets.yml
+config/local.yml
+secrets/
+
+# API Keys та certificates
+*.key
+*.pem
+*.crt
+*.p12
+api_keys.json
+
+# =================================================================
+# PYTHON SPECIFIC - Python файли
+# =================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+document_search_env/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+test-results/
+test_output/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# =================================================================
+# ML AND DATA FILES - Машинне навчання та дані
+# =================================================================
+
+# ML Models та weights (великі файли)
+models/
+weights/
+checkpoints/
+*.h5
+*.pkl
+*.joblib
+*.model
+*.bin
+*.onnx
+*.tflite
+
+# HuggingFace transformers cache
+.cache/huggingface/
+.cache/torch/
+
+# Datasets та data files
+data/
+datasets/
+*.csv
+*.tsv
+*.json
+*.jsonl
+*.parquet
+*.h5
+*.hdf5
+
+# Temporary ML files
+temp_models/
+experiments/
+runs/
+logs/tensorboard/
+
+# Embeddings cache
+embeddings_cache/
+vector_cache/
+*.npy
+*.npz
+
+# =================================================================
+# DATABASE AND STORAGE - Бази даних та сховища
+# =================================================================
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Qdrant data (якщо локально)
+qdrant_storage/
+vector_db/
+
+# Local storage directories
+storage/
+uploads/
+downloads/
+temp/
+tmp/
+
+# =================================================================
+# LOGS AND MONITORING - Логи та моніторинг
+# =================================================================
+
+# Log files
+logs/
+*.log
+*.log.*
+*.out
+*.err
+
+# Debug dumps
+*.dump
+*.trace
+core.*
+
+# Profiling data
+*.prof
+profile_*.txt
+
+# =================================================================
+# DOCUMENTS AND CONTENT - Документи (якщо не треба версіонувати)
+# =================================================================
+
+# Тестові документи (розкоментуйте якщо не потрібні в Git)
+# test_documents/
+# sample_docs/
+# *.pdf
+# *.docx
+# *.doc
+# *.txt
+
+# Generated documentation
+docs/_build/
+docs/build/
+
+# =================================================================
+# DOCKER AND CONTAINERIZATION - Docker та контейнери
+# =================================================================
+
+# Docker volumes
+docker_volumes/
+
+# Docker compose override files
+docker-compose.override.yml
+docker-compose.local.yml
+docker-compose.prod.yml
+
+# =================================================================
+# IDE AND EDITOR FILES - IDE та редактори
+# =================================================================
+
+# VSCode
+.vscode/
+!.vscode/settings.json.example
+!.vscode/launch.json.example
+!.vscode/extensions.json.example
+
+# PyCharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =================================================================
+# OPERATING SYSTEM FILES - Системні файли ОС
+# =================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =================================================================
+# BACKUP AND TEMPORARY FILES - Backup та тимчасові файли
+# =================================================================
+
+# Backup files
+*.backup
+*.bak
+*.old
+*.orig
+*.save
+*~
+
+# Temporary files
+*.tmp
+*.temp
+temp_*
+tmp_*
+
+# Archive files (залежно від проекту)
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# =================================================================
+# NODE.JS (якщо є frontend частина)
+# =================================================================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production build
+frontend/build/
+frontend/dist/
+
+# =================================================================
+# KUBERNETES AND DEPLOYMENT - Kubernetes та deployment
+# =================================================================
+
+# Kubernetes secrets
+k8s/secrets/
+kubernetes/secrets/
+*.secret.yml
+*.secret.yaml
+
+# Terraform state
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Helm charts (якщо містять секрети)
+helm/charts/*/secrets/
+
+# =================================================================
+# CUSTOM PROJECT FILES - Специфічні файли проекту
+# =================================================================
+
+# Тестові та dev файли
+playground/
+sandbox/
+scratch/
+test_*.py
+debug_*.py
+
+# Конфігурація локальних тестів
+local_test_config.yml
+test_documents_local/
+
+# Performance benchmarks results
+benchmarks/results/
+*.benchmark
+
+# Custom scripts з локальними налаштуваннями
+local_scripts/
+
+# =================================================================
+# EXCEPTION - Файли які ТРЕБА включити в Git
+# =================================================================
+
+# Важливо: використовуйте ! для включення файлів які б інакше ігнорувались
+
+# Включаємо приклади конфігурацій
+!.env.example
+!config/settings.example.yml
+
+# Включаємо важливі документи
+!README.md
+!CHANGELOG.md
+!LICENSE
+!requirements.txt
+
+# Включаємо тестові fixtures (маленькі файли)
+!tests/fixtures/*.pdf
+!tests/fixtures/*.docx
+
+# Включаємо Docker файли
+!Dockerfile
+!docker-compose.yml
+!.dockerignore
+
+# =================================================================
+# NOTES FOR TEAM
+# =================================================================
+
+# ВАЖЛИВО ДЛЯ КОМАНДИ:
+# 1. Ніколи не комітьте .env файли з реальними паролями
+# 2. Перед комітом перевіряйте чи немає чутливих даних: git status
+# 3. Якщо випадково закомітили секрет - негайно змініть його
+# 4. Використовуйте git-secrets або аналогічні інструменти
+# 5. Регулярно оновлюйте цей .gitignore при додаванні нових компонентів
+
+# КОМАНДИ ДЛЯ ПЕРЕВІРКИ:
+# git status - показує всі файли (включно з ігнорованими якщо --ignored)
+# git check-ignore filename - перевіряє чи ігнорується файл
+# git add -n . - dry run для перевірки що буде додано

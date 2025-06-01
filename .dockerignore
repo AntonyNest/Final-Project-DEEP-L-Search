@@ -1,0 +1,334 @@
+# =================================================================
+# Document Search Service - Docker Ignore Configuration
+# =================================================================
+# Цей файл визначає які файли Docker має ігнорувати при збірці образу.
+# Критично важливо для швидкості збірки та розміру образу.
+
+# =================================================================
+# VERSION CONTROL - Системи контролю версій
+# =================================================================
+
+.git/
+.gitignore
+*.git*
+
+# =================================================================
+# ENVIRONMENT AND SECRETS - Конфіденційні дані
+# =================================================================
+
+# Environment files (можуть містити секрети)
+.env
+.env.*
+*.env
+!.env.example
+
+# Backup files
+*.backup
+*.bak
+
+# Secrets and keys
+*.key
+*.pem
+*.crt
+api_keys.json
+secrets/
+
+# =================================================================
+# PYTHON CACHE AND TEMPORARY FILES - Python кеш
+# =================================================================
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Virtual environments (не потрібні в контейнері)
+venv/
+env/
+.venv/
+document_search_env/
+
+# pip cache
+.pip/
+
+# =================================================================
+# DEVELOPMENT FILES - Файли розробки
+# =================================================================
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+.spyderproject
+.spyproject
+
+# Development tools config
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# =================================================================
+# DOCUMENTATION AND LOGS - Документація та логи
+# =================================================================
+
+# Documentation build
+docs/_build/
+docs/build/
+/site
+
+# Log files (не включаємо в образ)
+logs/
+*.log
+*.log.*
+
+# =================================================================
+# TEST AND BUILD FILES - Тестові та build файли
+# =================================================================
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Coverage reports
+.coverage
+coverage.xml
+*.cover
+
+# =================================================================
+# ML MODELS AND DATA - ML моделі та дані
+# =================================================================
+
+# Large ML files (завантажуються runtime)
+models/
+weights/
+checkpoints/
+*.h5
+*.pkl
+*.model
+
+# Data files (не включаємо в образ)
+data/
+datasets/
+*.csv
+*.json
+*.parquet
+
+# Embeddings cache (створюється runtime)
+embeddings_cache/
+vector_cache/
+*.npy
+
+# =================================================================
+# DATABASE AND STORAGE - БД та сховища
+# =================================================================
+
+# Local database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Vector database storage (mount as volume)
+qdrant_storage/
+vector_db/
+
+# Upload/download directories
+uploads/
+downloads/
+temp/
+tmp/
+
+# =================================================================
+# DOCKER RELATED - Docker файли
+# =================================================================
+
+# Docker compose files (можуть містити local overrides)
+docker-compose.override.yml
+docker-compose.local.yml
+docker-compose.*.yml
+!docker-compose.yml
+
+# Docker build context exclusions
+Dockerfile.dev
+Dockerfile.test
+
+# =================================================================
+# SYSTEM FILES - Системні файли
+# =================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# =================================================================
+# RUNTIME FILES - Runtime файли
+# =================================================================
+
+# Process IDs
+*.pid
+
+# Temporary files
+*.tmp
+*.temp
+
+# =================================================================
+# PROJECT SPECIFIC EXCLUSIONS - Специфічні виключення
+# =================================================================
+
+# Scripts що не потрібні в production
+scripts/dev_*
+scripts/test_*
+playground/
+sandbox/
+
+# Local configuration overrides
+local_*
+config/local.*
+
+# Performance test results
+benchmarks/
+*.benchmark
+
+# Example and template files
+*.example
+*.template
+!requirements.txt
+
+# =================================================================
+# LARGE FILES AND ARCHIVES - Великі файли
+# =================================================================
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Large binary files
+*.iso
+*.dmg
+*.exe
+
+# =================================================================
+# MONITORING AND OBSERVABILITY - Моніторинг
+# =================================================================
+
+# Monitoring data (створюється runtime)
+metrics/
+traces/
+profiles/
+
+# =================================================================
+# DEPLOYMENT FILES - Deployment файли
+# =================================================================
+
+# Kubernetes manifests (deploy separately)
+k8s/
+kubernetes/
+*.yaml
+*.yml
+!docker-compose.yml
+
+# Terraform files
+*.tf
+*.tfstate
+.terraform/
+
+# Helm charts
+helm/
+
+# =================================================================
+# DOCUMENTATION FILES - Документація
+# =================================================================
+
+# Markdown files (не потрібні в runtime)
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+*.md
+!requirements.txt
+
+# Documentation images
+docs/images/
+*.png
+*.jpg
+*.gif
+!app/static/
+
+# =================================================================
+# OPTIMIZATION NOTES
+# =================================================================
+
+# ВАЖЛИВО ДЛЯ ОПТИМІЗАЦІЇ:
+# 
+# 1. Розмір контексту збірки:
+#    - Виключаємо всі непотрібні файли
+#    - Особливо важливо для великих датасетів та моделей
+#
+# 2. Кешування layers:
+#    - requirements.txt копіюється окремо для кешування pip install
+#    - Код додатку копіюється наприкінці
+#
+# 3. Безпека:
+#    - Ніколи не включаємо .env файли з секретами
+#    - Виключаємо всі development конфігурації
+#
+# 4. Performance:
+#    - Виключаємо тестові файли та документацію
+#    - Не включаємо IDE конфігурації
+
+# =================================================================
+# BUILD VERIFICATION
+# =================================================================
+
+# Команди для перевірки контексту збірки:
+# 
+# 1. Перевірити розмір контексту:
+#    docker build --dry-run .
+#
+# 2. Показати що буде включено:
+#    docker build --no-cache --progress=plain . 2>&1 | grep "COPY"
+#
+# 3. Аналіз розміру образу:
+#    docker images document-search:latest
+#    docker history document-search:latest
+
+# =================================================================
+# EXCEPTIONS - Що ТРЕБА включити
+# =================================================================
+
+# Використовуйте ! для включення файлів які б інакше ігнорувались
+
+# Включаємо основні файли
+!app/
+!requirements.txt
+!scripts/init_db.py
+!scripts/index_documents.py
+
+# Включаємо статичні ресурси (якщо є)
+!app/static/
+!app/templates/
